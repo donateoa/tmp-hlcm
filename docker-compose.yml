@@ -7,16 +7,16 @@ services:
     volumes:
       - ./_data/protected/config:/var/www/localhost/htdocs/protected/config
       - ./_data/protected/uploads:/var/www/localhost/htdocs/protected/uploads
-      - ./_data/humhub/10.11.42.39/Survey.php:/var/www/localhost/htdocs/protected/humhub/modules/space/widgets/Survey.php
-      - ./_data/humhub/10.11.42.39/login.php:/var/www/localhost/htdocs/protected/humhub/modules/user/views/auth/login.php
-      - ./_data/humhub/10.11.42.39/login_modal.php:/var/www/localhost/htdocs/protected/humhub/modules/user/views/auth/login_modal.php
+      # - ./_data/humhub/10.11.42.39/Survey.php:/var/www/localhost/htdocs/protected/humhub/modules/space/widgets/Survey.php
+      # - ./_data/humhub/10.11.42.39/login.php:/var/www/localhost/htdocs/protected/humhub/modules/user/views/auth/login.php
+      # - ./_data/humhub/10.11.42.39/login_modal.php:/var/www/localhost/htdocs/protected/humhub/modules/user/views/auth/login_modal.php
     environment:
-        - REGISTRATION_PAGE=http://10.11.42.39:8099/account/register
-        - FORGOT_PASSWORD_PAGE=http://10.11.42.39:8099/account/reset/request
+      - REGISTRATION_PAGE=http://10.11.42.39:8099/account/register
+      - FORGOT_PASSWORD_PAGE=http://10.11.42.39:8099/account/reset/request
     networks:
       - hlcm
     depends_on:
-      - db      
+      - db
   db:
     image: mariadb:10.2
     environment:
@@ -48,45 +48,45 @@ services:
   survey-generator-app:
     image: donateoa/survey-generator:latest
     environment:
-        - SPRING_PROFILES_ACTIVE=prod,swagger
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://survey-generator-postgresql/surveyGenerator
-        - JHIPSTER_SLEEP=10
-        - SPRING_DATASOURCE_PASSWORD=dedalus2018
-        - JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64-SECRET=cHJvZHVjdGlvbi1qd3Qtc2VjcmV0LWxlbmdodC1tb3JlLTUxMi0tbWFrZS1pdC13b3JraW5nLXdpdGgtNTEyLWxlbmd0aC1rZXkK
-        - LDAP_URL=ldap-service
-        - LDAP_PORT=389
-        - LDAP_USER=cn=admin,dc=example,dc=org
-        - LDAP_Password=admin
-        - LDAP_BASE=dc=example,dc=org
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://survey-generator-postgresql/surveyGenerator
+      - JHIPSTER_SLEEP=10
+      - SPRING_DATASOURCE_PASSWORD=dedalus2018
+      - JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64-SECRET=cHJvZHVjdGlvbi1qd3Qtc2VjcmV0LWxlbmdodC1tb3JlLTUxMi0tbWFrZS1pdC13b3JraW5nLXdpdGgtNTEyLWxlbmd0aC1rZXkK
+      - LDAP_URL=ldap-service
+      - LDAP_PORT=389
+      - LDAP_USER=cn=admin,dc=example,dc=org
+      - LDAP_Password=admin
+      - LDAP_BASE=dc=example,dc=org
     ports:
-        - 8087:8080
+      - 8087:8080
     networks:
       - hlcm
     depends_on:
       - survey-generator-postgresql
-    volumes: 
-      - ./_data/surveyGenerator/uploads/:/app/resources/public/content/images/uploads/   
+    volumes:
+      - ./_data/surveyGenerator/uploads/:/app/resources/public/content/images/uploads/
   survey-generator-postgresql:
     image: postgres:10.4
     environment:
-        - POSTGRES_USER=surveyGenerator
-        - POSTGRES_PASSWORD=dedalus2018
+      - POSTGRES_USER=surveyGenerator
+      - POSTGRES_PASSWORD=dedalus2018
     ports:
-        - 5432:5432
+      - 5432:5432
     networks:
       - hlcm
     volumes:
-      - ./_data/surveyGenerator/postgresql/:/var/lib/postgresql/data/  
+      - ./_data/surveyGenerator/postgresql/:/var/lib/postgresql/data/
   ionic-survey-generator-app:
     image: donateoa/ionic-survey-generator:latest
     ports:
-        - 8088:80
+      - 8088:80
     networks:
       - hlcm
   hlcm-portal:
     image: donateoa/hlcm-portal:latest
     ports:
-        - 8888:80 
+      - 8888:80
     networks:
       - hlcm
   ldap-service:
@@ -106,8 +106,8 @@ services:
   ldap-admin:
     image: osixia/phpldapadmin:0.8.0
     environment:
-        - PHPLDAPADMIN_LDAP_HOSTS=ldap-service
-        - PHPLDAPADMIN_HTTPS=false
+      - PHPLDAPADMIN_LDAP_HOSTS=ldap-service
+      - PHPLDAPADMIN_HTTPS=false
     ports:
       - 6443:80
     networks:
@@ -115,22 +115,22 @@ services:
   hlcm-ldap-account-app:
     image: donateoa/hlcm-ldap-account:latest
     environment:
-        - SPRING_PROFILES_ACTIVE=prod,swagger
-        - SPRING_DATASOURCE_URL=jdbc:postgresql://hlcm-ldap-account-postgresql/hlcmLdapAccount
-        - JHIPSTER_SLEEP=10
-        - SPRING_DATASOURCE_PASSWORD=dedalus2018
-        - JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64-SECRET=cHJvZHVjdGlvbi1qd3Qtc2VjcmV0LWxlbmdodC1tb3JlLTUxMi0tbWFrZS1pdC13b3JraW5nLXdpdGgtNTEyLWxlbmd0aC1rZXkK
-        - LDAP_URL=ldap-service
-        - LDAP_PORT=389
-        - LDAP_USER=cn=admin,dc=example,dc=org
-        - LDAP_Password=admin
-        - LDAP_BASE=dc=example,dc=org
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://hlcm-ldap-account-postgresql/hlcmLdapAccount
+      - JHIPSTER_SLEEP=10
+      - SPRING_DATASOURCE_PASSWORD=dedalus2018
+      - JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64-SECRET=cHJvZHVjdGlvbi1qd3Qtc2VjcmV0LWxlbmdodC1tb3JlLTUxMi0tbWFrZS1pdC13b3JraW5nLXdpdGgtNTEyLWxlbmd0aC1rZXkK
+      - LDAP_URL=ldap-service
+      - LDAP_PORT=389
+      - LDAP_USER=cn=admin,dc=example,dc=org
+      - LDAP_Password=admin
+      - LDAP_BASE=dc=example,dc=org
     ports:
-        - 8099:8080
+      - 8099:8080
     networks:
       - hlcm
     depends_on:
-      - hlcm-ldap-account-postgresql      
+      - hlcm-ldap-account-postgresql
   hlcm-ldap-account-postgresql:
     image: postgres:11.5
     environment:
