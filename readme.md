@@ -58,3 +58,9 @@ per terminare l'esecuzione è sufficente chiudere il terminale o all'interno del
 # per installare i moduli
 E' necessario fornire le grant di scrittura alla cartella
 `/var/www/localhost/htdocs/protected/runtime/cache/hu/` del container.
+
+### login to 10.11.42.39
+
+ssh  'alessandro.donateo@dedalus.eu'@10.11.42.39
+
+git token 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

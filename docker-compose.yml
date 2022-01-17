@@ -7,6 +7,7 @@ services:
     volumes:
       - ./_data/protected/config:/var/www/localhost/htdocs/protected/config
       - ./_data/protected/uploads:/var/www/localhost/htdocs/protected/uploads
+      # provisional comment the following line to separate the problem trying first to startup the app and the restore the import
       # - ./_data/humhub/10.11.42.39/Survey.php:/var/www/localhost/htdocs/protected/humhub/modules/space/widgets/Survey.php
       # - ./_data/humhub/10.11.42.39/login.php:/var/www/localhost/htdocs/protected/humhub/modules/user/views/auth/login.php
       # - ./_data/humhub/10.11.42.39/login_modal.php:/var/www/localhost/htdocs/protected/humhub/modules/user/views/auth/login_modal.php
