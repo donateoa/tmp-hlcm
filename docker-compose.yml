@@ -10,7 +10,7 @@ services:
       - ./_data/humhub/10.11.42.39/Survey.php:/var/www/localhost/htdocs/protected/humhub/modules/space/widgets/Survey.php
       - ./_data/humhub/10.11.42.39/login.php:/var/www/localhost/htdocs/protected/humhub/modules/user/views/auth/login.php
       - ./_data/humhub/10.11.42.39/login_modal.php:/var/www/localhost/htdocs/protected/humhub/modules/user/views/auth/login_modal.php
-      - ./_data/humhub/10.11.42.39/nginx/nginx.conf:/etc/nginx/nginx.conf
+      # - ./_data/humhub/10.11.42.39/nginx/nginx.conf:/etc/nginx/nginx.conf
     environment:
       - REGISTRATION_PAGE=http://10.11.42.39:8099/account/register
       - FORGOT_PASSWORD_PAGE=http://10.11.42.39:8099/account/reset/request
